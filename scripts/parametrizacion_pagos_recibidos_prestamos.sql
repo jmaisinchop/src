@@ -1,0 +1,320 @@
+/***********************************************************************************
+                --- PROCESO PAGOS RECIBIDOS PRESTAMOS ---
+    Date: 03/06/2025
+    Autor: Adrián Carchipulla
+    Issue: Parametrizaciones todo referente al proceso de pagos recibidos préstamos
+***********************************************************************************/
+/****************************************************************
+ * 
+ * NUEVO FLUJO DE TICKETS PARA PAGOS Y RECIBOS CREDITO
+ * 
+ ***************************************************************/
+-- Nuevo proceso
+INSERT into hdz_departments (id, dep_order, name, id_padre, private)
+values (16, 21, 'Pagos Recibidos Préstamos', 0, 0);
+
+-- Parametrizaciones del sistema
+insert into hdz_system_params (id, cparam, type_param, param_text, param_number, param_description)
+values (18, 'DEPARTMENT_LOAN_PAYMENTS','T','Pagos Recibidos Préstamos', NULL, 'Parametro para validaciones del proceso de Pagos Recibidos Préstamos.');
+
+insert into hdz_system_params (id, cparam, type_param, param_text, param_number, param_description)
+values (19, 'LOAN_PAYMENT_NOTIFICATION_EMAILS','T','credito@austrobank.com; operacionesaustrobank@austrobank.com', NULL, 'Correos para notificar cuando se crea el ticket en el proceso de pagos recibidos.');
+
+-- Parametrizaciones de adjuntos para el nuevo proceso (Departamento)
+insert into hdz_config_department (id, ticket_attachment, source_parameter, department_id, ticket_attachment_number, ticket_file_size, ticket_file_type)
+values (9, 1, 'advisor', 16, 1, 10, 'a:3:{i:0;s:3:"jpg";i:1;s:3:"png";i:2;s:4:"jpeg";}');
+
+insert into hdz_config_department (id, ticket_attachment, source_parameter, department_id, ticket_attachment_number, ticket_file_size, ticket_file_type)
+values (10, 1, 'executive', 16, 2, 10, 'a:3:{i:0;s:3:"jpg";i:1;s:3:"png";i:2;s:4:"jpeg";}');
+
+		
+/****************************************************************************
+ * 
+ * Se crea tabla para registrar informacion de Pagos Recibidos Prestamos
+ * 
+ ****************************************************************************/
+
+CREATE TABLE hdz_loan_payments_received(
+	id INT NOT NULL AUTO_INCREMENT,
+    client_name VARCHAR (100) NOT NULL,
+    loan_number VARCHAR (20) NOT NULL,
+    date int not null,
+    last_date int not null,
+    email VARCHAR(60) NOT NULL,
+    ticket_id INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+/*****************************************************************************
+ *  
+ * TABLA AUDITORIA PARA ALMACENAR LOS EMAILS ENVIADOS A LOS CLIENTES 
+ * 
+ ****************************************************************************/
+CREATE TABLE hdz_loan_payments_email (
+	id INT NOT NULL AUTO_INCREMENT,
+    ticket_id INT NOT NULL,
+    name VARCHAR (100) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    date INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+/**********************************************************************************
+ *  
+ * PLANTILLA DE EMAIL PARA NOTIFICAR AL CLIENTE CON EL COMPROBANTE DE PAGO CREDITO 
+ * 
+ *********************************************************************************/
+INSERT INTO hdz_emails_tpl (id, position, name, subject, message, last_update, status)
+VALUES('client_notification_loan', 
+8,
+'New loan notification for the client', 
+'Re: [#%ticket_id%] %ticket_subject%',
+'<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Document</title>
+
+    <style type="text/css">
+        @media screen {
+            @font-face {
+                font-family: `Lato`;
+                font-style: normal;
+                font-weight: 400;
+                src: local(`Lato Regular`), local(`Lato-Regular`), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format(`woff`);
+            }
+            @font-face {
+                font-family: `Lato`;
+                font-style: normal;
+                font-weight: 700;
+                src: local(`Lato Bold`), local(`Lato-Bold`), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format(`woff`);
+            }
+            @font-face {
+                font-family: `Lato`;
+                font-style: italic;
+                font-weight: 400;
+                src: local(`Lato Italic`), local(`Lato-Italic`), url(https://fonts.gstatic.com/s/lato/v11/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format(`woff`);
+            }
+            @font-face {
+                font-family: `Lato`;
+                font-style: italic;
+                font-weight: 700;
+                src: local(`Lato Bold Italic`), local(`Lato-BoldItalic`), url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format(`woff`);
+            }
+        }
+        /* CLIENT-SPECIFIC STYLES */
+        
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+        /* RESET STYLES */
+        
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+        
+        table {
+            border-collapse: collapse !important;
+        }
+        
+        body {
+            /*height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;*/
+        }
+        /* iOS BLUE LINKS */
+        
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+        /* MOBILE STYLES */
+        
+        @media screen and (max-width:600px) {
+            h1 {
+                font-size: 32px !important;
+                line-height: 32px !important;
+            }
+        }
+        /* ANDROID CENTER FIX */
+        
+        div[style*="margin: 16px 0;"] {
+            margin: 0 !important;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
+    <!-- Plantilla Notificación Cliente -->
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+            <tr>
+                <!-- LOGO -->
+                <td align="center" bgcolor="#f7f9fa">
+                    <table style="max-width: 600px;" border="0" width="100%" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td style="padding: 40px 10px 40px 10px;" align="center" valign="top">&nbsp;
+                                    <!--<img style="display: block; border: 0px;" src="https://austrobank.com/wp-content/uploads/2021/12/logoNegro.png" width="250" height="50" />-->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <!-- TITUTLO -->
+            <tr>
+                <td align="center" bgcolor="#f7f9fa">
+                    <table style="max-width: 850px;" border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
+                            <td style="padding: 40px 80px 20px 10px;" align="right" valign="top" bgcolor="#FFFFFF">
+                                <img style="display: block; border: 0px;" src="https://austrobank.com/wp-content/uploads/2020/10/AUSTROBANK-lgtp.png" loading="lazy" width="250" height="50" style="display: block; border: 0px;" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- CUERPO MENSAJE -->
+            <tr>
+                <td style="padding: 0px 10px 0px 10px;" align="center" bgcolor="#f7f9fa">
+                    <table style="max-width: 850px;" border="0" width="100%" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td style="padding: 20px 30px 10px 30px; color: #666666; font-family: `Lato`, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;" align="right" bgcolor="#ffffff">
+                                    <p style="margin: 0; text-align: right; margin-left: 50px; margin-right: 50px; font-style: italic;">
+                                        Panam&aacute;, %date%.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px 30px 10px 30px; color: #666666; font-family: `Lato`, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 25px;" align="left" bgcolor="#ffffff">
+                                    <p style="margin: 0; text-align: justify; margin-left: 50px; margin-right: 50px; font-style: italic;">
+                                        Reciba un cordial saludo del Centro de Atenci&oacute;n al Cliente de Austrobank Overseas(Panam&aacute;) S A.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px 30px 10px 30px; color: #666666; font-family: `Lato`, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 25px;" align="left" bgcolor="#ffffff">
+                                    <p style="margin: 0; text-align: justify; margin-left: 50px; margin-right: 50px; font-style: italic;">
+										Adjuntamos el comprobante de su pago registrado en el cr&eacute;dito No. %loan_number%
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px 30px 10px 30px; color: #666666; font-family: `Lato`, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 25px;" align="left" bgcolor="#ffffff">
+                                    <p style="margin: 0; text-align: justify; margin-left: 50px; margin-right: 50px; font-style: italic;">
+                                        Por favor no conteste a esta direcci&oacute;n de correo. Para cualquier duda o asistencia, favor comunicarse con su gestor de negocios quien con mucho gusto le atender&aacute;.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px 30px 10px 30px; color: #666666; font-family: `Lato`, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 25px;" align="left" bgcolor="#ffffff">
+                                    <p style="margin: 0; text-align: justify; margin-left: 50px; margin-right: 50px; font-style: italic;">
+                                        Gracias por ser parte de nuestro selecto grupo de Clientes.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px 30px 50px 30px; color: #666666; font-family: `Lato`, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;" align="left" bgcolor="#ffffff">
+                                    <p style="margin: 0; text-align: justify; margin-left: 50px; margin-right: 50px; font-style: italic;">
+                                        Atentamente,<br> AUSTROBANK OVERSEAS (PANAM&Aacute;) S.A..
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 0px 10px 15px 10px; border-radius: 0px 0px 4px 4px;" align="center" bgcolor="#f7f9fa">
+                    <table style="max-width: 850px; " border="0" width="100%" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td style="padding: 5px 30px 10px 30px; color: #666666; font-family: `Lato`, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 300; line-height: 20px;" align="left" bgcolor="#DBDBDB">
+                                    <p style="text-align: left;"><img src="https://img.icons8.com/stickers/100/000000/password.png" width="30" height="30" /><span style="font-style: italic;">SEGURIDAD</span></p>
+                                    <p style="margin: 0; font-style: italic; color: #666666;">
+                                        Te recordamos que AUSTROBANK OVERSEAS (PANAM&Aacute;) S.A. no solicita informaci&oacute;n confidencial por ning&uacute;n medio electr&oacute;nico. Este correo fue enviado de forma autom&aacute;tica y no requiere respuesta
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 30px 5px 30px;" align="center" bgcolor="#DBDBDB">
+                                    <table style="max-width: 850px;" border="0" width="100%" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <span style="font-size: 12px;">
+                                                   <img src="https://img.icons8.com/material-rounded/50/000000/marker.png" width="15" height="15"/>
+                                                <b><span style="color: #007b9d;">Calle 53 Este, Marbella. Edificio Humboldt Tower, Planta Baja / Panamá</span></b>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 30px 30px 30px;" bgcolor="#DBDBDB" align="center">
+                                    <table style="max-width: 850px;" border="0" width="100%" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <span style="font-size: 12px;">
+                                                   <img src="https://img.icons8.com/ios-glyphs/30/000000/new-post.png" width="15" height="15"/>
+                                                   <b><span style="color: #007b9d;">contactanos@austrobank.com</span></b>
+                                                    </span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <span style="font-size: 12px;">
+                                                   <img src="https://img.icons8.com/external-prettycons-solid-prettycons/60/000000/external-telephone-communications-prettycons-solid-prettycons.png" width="15" height="15"/>
+                                                <b><span style="color: #007b9d;">+507 223-4455</span></b>
+                                                    </span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <span style="font-size: 12px;">
+                                                   <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-world-user-experience-flatart-icons-outline-flatarticons.png" width="15" height="15"/>
+                                                <b><span style="color: #007b9d;">www.austrobank.com</span></b>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>',
+0,1);

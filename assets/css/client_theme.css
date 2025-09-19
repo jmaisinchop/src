@@ -1,0 +1,79 @@
+/* assets/css/portal_moderno.css */
+:root {
+    --austro-primary: #00AEEF; /* Azul cian del logo */
+    --austro-secondary: #5A5A5A; /* Gris oscuro del logo */
+    --background-light: #F5F7FA;
+    --card-bg: #FFFFFF;
+    --text-dark: #212529;
+    --text-light: #6c757d;
+    --border-color: #e9ecef;
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--background-light);
+    font-family: 'Poppins', sans-serif;
+}
+
+.portal-header {
+    padding: 4rem 0;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+.portal-header .logo { max-height: 50px; margin-bottom: 1rem; }
+.portal-header h1 { font-weight: 700; color: var(--text-dark); }
+.portal-header p { font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 1rem auto 0; }
+
+.action-cards-section { padding: 3rem 0; }
+.action-card {
+    background-color: var(--card-bg);
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.action-card:hover { transform: translateY(-10px); box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.12); }
+.action-card .icon { font-size: 3rem; color: var(--austro-primary); margin-bottom: 1rem; }
+.action-card h3 { font-weight: 600; color: var(--text-dark); }
+.action-card p { color: var(--text-light); }
+
+.modal-content { border-radius: 15px; border: none; }
+.modal-header { border-bottom: none; }
+.modal-title { font-weight: 600; }
+
+.btn-austro {
+    background-color: var(--austro-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-austro:hover { background-color: #0098d4; color: white; box-shadow: 0 4px 15px rgba(0, 174, 239, 0.3); }
+.form-control { border-radius: 8px; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.form-control:focus {
+    border-color: var(--austro-primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 174, 239, 0.25);
+}
+.custom-file-label::after { background-color: var(--austro-primary); color: white; }
+
+/* Vista del Ticket */
+.ticket-details-card { background-color: var(--card-bg); border-radius: 15px; box-shadow: var(--shadow-sm); }
+.conversation-history { margin-top: 2rem; }
+.message-card { border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 1.5rem; }
+.message-card .card-header { font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid var(--border-color); }
+.message-user { border-left: 5px solid var(--austro-primary); }
+.message-user .card-header { background-color: #e7f9ff; color: var(--austro-primary); }
+.message-staff { border-left: 5px solid var(--austro-secondary); }
+.message-staff .card-header { background-color: var(--background-light); color: var(--text-dark); }
+.reply-card { background-color: var(--card-bg); border-radius: 15px; box-shadow: var(--shadow-md); }

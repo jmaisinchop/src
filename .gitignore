@@ -1,0 +1,12 @@
+
+*.log
+hdz/writable/session/
+
+# Archivos de macOS
+.DS_Store
+
+# Archivos de IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/

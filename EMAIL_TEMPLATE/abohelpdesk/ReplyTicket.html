@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <style type="text/css">
+        @media screen {
+            @font-face {
+                font-family: 'Lato';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+            }
+            @font-face {
+                font-family: 'Lato';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+            }
+            @font-face {
+                font-family: 'Lato';
+                font-style: italic;
+                font-weight: 400;
+                src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v11/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+            }
+            @font-face {
+                font-family: 'Lato';
+                font-style: italic;
+                font-weight: 700;
+                src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+            }
+        }
+        /* CLIENT-SPECIFIC STYLES */
+        
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+        /* RESET STYLES */
+        
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+        
+        table {
+            border-collapse: collapse !important;
+        }
+        
+        body {
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+        /* iOS BLUE LINKS */
+        
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+        /* MOBILE STYLES */
+        
+        @media screen and (max-width:600px) {
+            h1 {
+                font-size: 32px !important;
+                line-height: 32px !important;
+                padding: 10px !important;
+            }
+            td {
+                /*padding: 10px 15px 10px 15px !important;*/
+            }
+            .espacio-td {
+                padding: 15px 10px 15px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width:400px) {
+            td {
+                /*padding: 10px 15px 10px 15px !important;*/
+            }
+            .espacio-td {
+                padding: 9px 5px 9px 5px !important;
+                color: #B66217 !important;
+            }
+            .col {
+                /*width: 100%;*/
+            }
+        }
+        /* ANDROID CENTER FIX */
+        
+        div[style*="margin: 16px 0;"] {
+            margin: 0 !important;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <!-- LOGO -->
+        <tr>
+            <td bgcolor="#f7f9fa" align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                    <tr>
+                        <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
+                            <img src="https://austrobank.com/wp-content/uploads/2020/10/AUSTROBANK-lgtp.png" width="250" height="50" style="display: block; border: 0px; padding-top: 0.9rem;" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- TITUTLO -->
+        <tr>
+            <td bgcolor="#f7f9fa" align="center" style="padding: 0px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 850px;">
+                    <tr>
+                        <td bgcolor="#007b9d" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                            <h1 style="font-size: 48px; font-weight: 400; margin: 2; color: #ffffff; ">Respuesta ticket</h1>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <!-- CUERPO MENSAJE -->
+        <tr>
+            <td bgcolor="#f7f9fa" align="center" style="padding: 0px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 850px;">
+                    <tr>
+                        <td bgcolor="#ffffff" align="left" style="padding: 40px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0; text-align: justify;">%message%</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td bgcolor="#ffffff" align="center" style="color: #007b9d; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 600; line-height: 25px;">
+                            <p><strong>Detalle Ticket</strong></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#ffffff">
+                            <hr style="border-top: 2px dashed #B66217; width: 350px;">
+                        </td>
+                    </tr>
+                    <!-- Detalle Ticket -->
+                    <tr>
+                        <td class="col" bgcolor="#ffffff" style="padding: 20px 100px 20px 100px;" class="espacio-td">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                                <tbody>
+                                    <tr>
+                                        <td bgcolor="#ffffff" style="text-align: left;">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                                                <strong>Ticket ID:</strong>
+                                            </p>
+                                        </td>
+                                        <td width=20></td>
+                                        <td bgcolor="#ffffff" style="text-align: right">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px; color: #6c757d;">%ticket_id%</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#ffffff" style="text-align: left;">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                                                <strong>Departamento:</strong>
+                                            </p>
+                                        </td>
+                                        <td width=20></td>
+                                        <td bgcolor="#ffffff" style="text-align: right">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px; color: #6c757d;">%ticket_department%</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#ffffff" style="text-align: left;">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                                                <strong>Departamentos adjunto:</strong>
+                                            </p>
+                                        </td>
+                                        <td width=20></td>
+                                        <td bgcolor="#ffffff" style="text-align: right">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px; color: #6c757d;">%ticket_dtpsAdjunto%</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#ffffff" style="text-align: left;">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                                                <strong>Estatus:</strong>
+                                            </p>
+                                        </td>
+                                        <td width=20></td>
+                                        <td bgcolor="#ffffff" style="text-align: right">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px; color: #6c757d;">%ticket_status%</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#ffffff" style="text-align: left;">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                                                <strong>Prioridad:</strong>
+                                            </p>
+                                        </td>
+                                        <td width=20></td>
+                                        <td bgcolor="#ffffff" style="text-align: right">
+                                            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px; color: #6c757d;">%ticket_priority%</p>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#ffffff" align="left">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td bgcolor="#ffffff" align="center" style="padding: 20px 0 40px 0;">
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" style="border-radius: 3px;" bgcolor="#B66217"><a href="%support_url%" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #B66217; display: inline-block;">Ver respuesta</a></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- COPY -->
+                    <tr>
+                        <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">%company_name%</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 0px 10px 15px 10px; border-radius: 0px 0px 4px 4px;" align="center" bgcolor="#f7f9fa">
+                <table style="max-width: 850px; " border="0" width="100%" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding: 5px 30px 10px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 300; line-height: 20px;" align="left" bgcolor="#DBDBDB">
+                                <p style="text-align: left;"><img src="https://img.icons8.com/stickers/100/000000/password.png" width="30" height="30" /><span style="font-style: italic;">SEGURIDAD</span></p>
+                                <p style="margin: 0; font-style: italic; color: #666666;">
+                                    Te recordamos que AUSTROBANK OVERSEAS (PANAM&Aacute;) S.A. no solicita informaci&oacute;n confidencial por ning&uacute;n medio electr&oacute;nico. Este correo fue enviado de forma autom&aacute;tica y no requiere respuesta
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 30px 5px 30px;" align="center" bgcolor="#DBDBDB">
+                                <table style="max-width: 850px;" border="0" width="100%" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                <span style="font-size: 12px;">
+                                                   <img src="https://img.icons8.com/material-rounded/50/000000/marker.png" width="15" height="15"/>
+                                                <b><span style="color: #007b9d;">Calle 53 Este, Marbella. Edificio Humboldt Tower, Planta Baja / Panamá</span></b>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 30px 30px 30px;" bgcolor="#DBDBDB" align="center">
+                                <table style="max-width: 850px;" border="0" width="100%" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                <span style="font-size: 12px;">
+                                                   <img src="https://img.icons8.com/ios-glyphs/30/000000/new-post.png" width="15" height="15"/>
+                                                   <b><span style="color: #007b9d;">contactanos@austrobank.com</span></b>
+                                                </span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span style="font-size: 12px;">
+                                                   <img src="https://img.icons8.com/external-prettycons-solid-prettycons/60/000000/external-telephone-communications-prettycons-solid-prettycons.png" width="15" height="15"/>
+                                                <b><span style="color: #007b9d;">+507 223-4455</span></b>
+                                                </span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span style="font-size: 12px;">
+                                                   <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-world-user-experience-flatart-icons-outline-flatarticons.png" width="15" height="15"/>
+                                                <b><span style="color: #007b9d;">www.austrobank.com</span></b>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
