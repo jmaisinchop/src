@@ -40,6 +40,7 @@ class ComposerStaticInitb5977b783995a0e6ca406f6021cf684a
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
@@ -48,6 +49,10 @@ class ComposerStaticInitb5977b783995a0e6ca406f6021cf684a
         'M' => 
         array (
             'Matrix\\' => 7,
+        ),
+        'L' => 
+        array (
+            'Laminas\\Escaper\\' => 16,
         ),
         'G' => 
         array (
@@ -58,6 +63,7 @@ class ComposerStaticInitb5977b783995a0e6ca406f6021cf684a
         array (
             'Composer\\Pcre\\' => 14,
             'Complex\\' => 8,
+            'CodeIgniter\\' => 12,
         ),
     );
 
@@ -106,6 +112,10 @@ class ComposerStaticInitb5977b783995a0e6ca406f6021cf684a
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
@@ -127,6 +137,10 @@ class ComposerStaticInitb5977b783995a0e6ca406f6021cf684a
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
         ),
+        'Laminas\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-escaper/src',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -142,6 +156,10 @@ class ComposerStaticInitb5977b783995a0e6ca406f6021cf684a
         'Complex\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
+        ),
+        'CodeIgniter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeigniter4/framework/system',
         ),
     );
 

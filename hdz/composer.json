@@ -1,6 +1,7 @@
 {
   "name": "evolutionscript/helpdesk",
   "require": {
+    "codeigniter4/framework": "^4.5",
     "google/recaptcha": "~1.2",
     "php-imap/php-imap": "^5.0",
     "ezyang/htmlpurifier": "4.15",
